@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cofrinho · controle de gastos do mês</title>
+  <meta name="description" content="Controle de gastos do mês com a regra 50/30/20. Feito do zero no canal Sem Pauta.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23ce3a2a'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='%23faf1e6' font-family='sans-serif' font-weight='800'>C</text></svg>">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="marca">
+      <span class="marca-icone" aria-hidden="true"></span>
+      <div>
+        <h1>Cofrinho</h1>
+        <p class="marca-sub">controle de gastos do mês</p>
+      </div>
+    </div>
+
+    <nav class="mes" aria-label="Escolher mês">
+      <button class="mes-seta" id="mes-anterior" aria-label="Mês anterior">‹</button>
+      <strong id="mes-nome">—</strong>
+      <button class="mes-seta" id="mes-seguinte" aria-label="Mês seguinte">›</button>
+    </nav>
+  </header>
+
+  <main class="conteudo">
+    <section class="cartoes" aria-label="Resumo do mês">
+      <article class="cartao">
+        <span class="rotulo">Entrou</span>
+        <strong class="valor positivo" id="total-entradas">R$ 0,00</strong>
+      </article>
+      <article class="cartao">
+        <span class="rotulo">Saiu</span>
+        <strong class="valor negativo" id="total-saidas">R$ 0,00</strong>
+      </article>
+      <article class="cartao destaque">
+        <span class="rotulo">Sobrou</span>
+        <strong class="valor" id="total-saldo">R$ 0,00</strong>
+      </article>
+    </section>
+
+    <div class="grade">
+      <section class="painel" aria-labelledby="titulo-novo">
+        <h2 id="titulo-novo">Novo lançamento</h2>
+        <form id="form-lancamento" class="formulario" autocomplete="off">
+          <div class="alternar" role="radiogroup" aria-label="Tipo">
+            <label><input type="radio" name="tipo" value="saida" checked> <span>Gasto</span></label>
+            <label><input type="radio" name="tipo" value="entrada"> <span>Entrada</span></label>
+          </div>
+
+          <label class="campo">
+            <span>Descrição</span>
+            <input name="descricao" placeholder="Ex.: mercado do mês" required maxlength="80">
+          </label>
+
+          <div class="linha">
+            <label class="campo">
+              <span>Valor (R$)</span>
+              <input name="valor" inputmode="decimal" placeholder="0,00" required>
+            </label>
+            <label class="campo">
+              <span>Data</span>
+              <input name="data" type="date" required>
+            </label>
+          </div>
+
+          <label class="campo">
+            <span>Categoria</span>
+            <select name="categoria_id" required></select>
+          </label>
+
+          <button class="botao" type="submit">Lançar</button>
+          <p class="erro" id="form-erro" role="alert"></p>
+        </form>
+      </section>
+
+      <section class="painel" aria-labelledby="titulo-grafico">
+        <h2 id="titulo-grafico">Para onde foi o dinheiro</h2>
+        <div class="grafico">
+          <svg id="rosca" viewBox="0 0 200 200" role="img" aria-label="Gastos por categoria"></svg>
+          <ul class="legenda" id="legenda"></ul>
+        </div>
+      </section>
+    </div>
+
+    <section class="painel" aria-labelledby="titulo-regra">
+      <h2 id="titulo-regra">Regra 50/30/20</h2>
+      <p class="ajuda">Da sua renda: até 50% para necessidades, até 30% para desejos e pelo menos 20% para guardar.</p>
+      <div id="regra" class="regra"></div>
+    </section>
+
+    <section class="painel" aria-labelledby="titulo-metas">
+      <div class="painel-topo">
+        <h2 id="titulo-metas">Metas</h2>
+      </div>
+      <div id="metas" class="metas"></div>
+      <form id="form-meta" class="form-meta" autocomplete="off">
+        <input name="nome" placeholder="Nova meta (ex.: reserva de emergência)" required maxlength="60">
+        <input name="alvo" inputmode="decimal" placeholder="Valor (R$)" required>
+        <button class="botao secundario" type="submit">Criar meta</button>
+      </form>
+      <p class="erro" id="meta-erro" role="alert"></p>
+    </section>
+
+    <section class="painel" aria-labelledby="titulo-lista">
+      <div class="painel-topo">
+        <h2 id="titulo-lista">Lançamentos</h2>
+        <a class="botao secundario" id="exportar" href="#" download>Baixar planilha</a>
+      </div>
+      <ul id="lista" class="lista"></ul>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    Feito do zero no canal <strong>Sem Pauta</strong> · qualquer assunto, sem complicação
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
