@@ -1,0 +1,5 @@
+Fontes usadas no Cofrinho, todas sob a SIL Open Font License 1.1 (uso livre, inclusive comercial):
+- Bricolage Grotesque — Mathieu Triay
+- Figtree — Erik Kennedy
+- IBM Plex Mono — IBM
+Texto da licença: https://openfontlicense.org
